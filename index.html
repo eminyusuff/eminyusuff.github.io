@@ -230,12 +230,6 @@ section:last-of-type{border-bottom:none}
 }
 .pub-link-btn:hover{border-color:var(--accent);color:var(--accent);background:var(--accent-h)}
 
-/* CONTACT */
-.contact-row{display:flex;align-items:flex-start;gap:.8rem;margin-bottom:.7rem;font-size:.97rem}
-.contact-row i{color:var(--accent);margin-top:4px;min-width:18px}
-.contact-row a{color:var(--accent)}
-.contact-row a:hover{text-decoration:underline}
-
 /* FOOTER */
 footer{
   text-align:center;padding:1.8rem 48px;
@@ -278,7 +272,6 @@ footer a:hover{text-decoration:underline}
       <li><a href="#about" class="active">about</a></li>
       <li><a href="Emin_Yusuf_AYDIN_CV.pdf" target="_blank">cv</a></li>
       <li><a href="#publications">publications</a></li>
-      <li><a href="#contact">contact</a></li>
     </ul>
     <button class="theme-toggle" id="themeToggle" title="Toggle dark/light mode">
       <i class="fas fa-moon" id="themeIcon"></i>
@@ -305,7 +298,8 @@ footer a:hover{text-decoration:underline}
       </div>
     </div>
     <div class="hero-photo">
-      <div class="photo-ph">Add your<br>photo here<br><small>(replace with<br>&lt;img&gt; tag)</small></div>
+      <!-- Buraya profile.jpg adındaki fotoğrafınızı yüklediğinizi varsayıyoruz -->
+      <img src="profile.jpg" alt="Emin Yusuf AYDIN">
     </div>
   </div>
 
@@ -375,24 +369,17 @@ footer a:hover{text-decoration:underline}
     <!-- PUB 1 -->
     <div class="pub-card">
       <div class="pub-thumb">
-        <!-- SVG: electric fish in water flow with sine wave signals -->
         <svg viewBox="0 0 130 100" xmlns="http://www.w3.org/2000/svg">
           <rect width="130" height="100" fill="#e8f4f8"/>
-          <!-- water ripple lines -->
           <path d="M5 30 Q32 22 60 30 Q88 38 115 30" stroke="#90cfe8" stroke-width="1.5" fill="none" opacity=".7"/>
           <path d="M5 50 Q32 42 60 50 Q88 58 115 50" stroke="#90cfe8" stroke-width="1.5" fill="none" opacity=".7"/>
           <path d="M5 70 Q32 62 60 70 Q88 78 115 70" stroke="#90cfe8" stroke-width="1.5" fill="none" opacity=".7"/>
-          <!-- electric fish body -->
           <ellipse cx="65" cy="50" rx="28" ry="10" fill="#2e7d9e"/>
-          <!-- tail -->
           <path d="M93 50 L108 43 L108 57 Z" fill="#1a5c78"/>
-          <!-- eye -->
           <circle cx="42" cy="48" r="3" fill="#fff"/>
           <circle cx="42" cy="48" r="1.5" fill="#1a1a1a"/>
-          <!-- electric field arcs -->
           <path d="M65 38 Q85 28 105 38" stroke="#FFD700" stroke-width="1.2" fill="none" stroke-dasharray="3,2" opacity=".9"/>
           <path d="M65 62 Q85 72 105 62" stroke="#FFD700" stroke-width="1.2" fill="none" stroke-dasharray="3,2" opacity=".9"/>
-          <!-- flow arrows -->
           <path d="M10 85 L25 85" stroke="#c0392b" stroke-width="1.5" marker-end="url(#arr)"/>
           <path d="M30 85 L45 85" stroke="#c0392b" stroke-width="1.5" marker-end="url(#arr)"/>
           <path d="M50 85 L65 85" stroke="#c0392b" stroke-width="1.5" marker-end="url(#arr)"/>
@@ -418,28 +405,22 @@ footer a:hover{text-decoration:underline}
     <!-- PUB 2 -->
     <div class="pub-card">
       <div class="pub-thumb">
-        <!-- SVG: predictive state estimation / fish + uncertainty cloud -->
         <svg viewBox="0 0 130 100" xmlns="http://www.w3.org/2000/svg">
           <rect width="130" height="100" fill="#eef3f0"/>
-          <!-- fish -->
           <ellipse cx="40" cy="55" rx="22" ry="8" fill="#2e7d9e"/>
           <path d="M62 55 L74 49 L74 61 Z" fill="#1a5c78"/>
           <circle cx="23" cy="53" r="2.5" fill="#fff"/>
           <circle cx="23" cy="53" r="1.2" fill="#111"/>
-          <!-- electric field -->
           <ellipse cx="40" cy="55" rx="34" ry="22" stroke="#FFD700" stroke-width="1" fill="none" stroke-dasharray="4,3" opacity=".8"/>
-          <!-- uncertainty cloud (dashed box) -->
           <rect x="78" y="30" width="42" height="40" rx="5" fill="none" stroke="#6A1B9A" stroke-width="1.3" stroke-dasharray="4,2"/>
           <text x="84" y="47" font-size="7" fill="#6A1B9A" font-family="sans-serif" font-weight="bold">predict</text>
           <text x="84" y="58" font-size="7" fill="#6A1B9A" font-family="sans-serif">uncertainty</text>
-          <!-- arrow from fish to box -->
           <path d="M72 55 L78 50" stroke="#388E3C" stroke-width="1.3" marker-end="url(#arr2)"/>
           <defs>
             <marker id="arr2" markerWidth="5" markerHeight="5" refX="4" refY="2.5" orient="auto">
               <path d="M0,0 L0,5 L5,2.5 Z" fill="#388E3C"/>
             </marker>
           </defs>
-          <!-- signal wave bottom -->
           <path d="M5 82 Q15 74 25 82 Q35 90 45 82 Q55 74 65 82 Q75 90 85 82" stroke="#2196F3" stroke-width="1.5" fill="none"/>
           <text x="90" y="85" font-size="7" fill="#888" font-family="sans-serif">EOD signal</text>
         </svg>
@@ -458,28 +439,21 @@ footer a:hover{text-decoration:underline}
     <!-- PUB 3 -->
     <div class="pub-card">
       <div class="pub-thumb">
-        <!-- SVG: tendon / stem cell illustration -->
         <svg viewBox="0 0 130 100" xmlns="http://www.w3.org/2000/svg">
           <rect width="130" height="100" fill="#fef6ee"/>
-          <!-- tendon bundle (parallel lines) -->
           <rect x="30" y="30" width="70" height="40" rx="12" fill="#f0c080"/>
           <line x1="30" y1="42" x2="100" y2="42" stroke="#d4a054" stroke-width="1"/>
           <line x1="30" y1="50" x2="100" y2="50" stroke="#d4a054" stroke-width="1"/>
           <line x1="30" y1="58" x2="100" y2="58" stroke="#d4a054" stroke-width="1"/>
-          <!-- SVF droplets -->
           <circle cx="52" cy="50" r="7" fill="#c0392b" opacity=".75"/>
           <text x="49" y="53" font-size="6.5" fill="#fff" font-family="sans-serif" font-weight="bold">SVF</text>
-          <!-- BMC droplets -->
           <circle cx="78" cy="50" r="7" fill="#2196F3" opacity=".75"/>
           <text x="73" y="53" font-size="6.5" fill="#fff" font-family="sans-serif" font-weight="bold">BMC</text>
-          <!-- labels -->
           <text x="28" y="22" font-size="7.5" fill="#888" font-family="sans-serif">Achilles Tendon Healing</text>
-          <!-- cell symbols -->
           <circle cx="20" cy="50" r="5" fill="none" stroke="#888" stroke-width="1"/>
           <circle cx="20" cy="50" r="2" fill="#888"/>
           <circle cx="110" cy="50" r="5" fill="none" stroke="#888" stroke-width="1"/>
           <circle cx="110" cy="50" r="2" fill="#888"/>
-          <!-- plus sign for co-use -->
           <text x="61" y="87" font-size="10" fill="#388E3C" font-family="sans-serif" font-weight="bold">co-use &#8594; healing</text>
         </svg>
       </div>
@@ -497,18 +471,14 @@ footer a:hover{text-decoration:underline}
     <!-- PUB 4 -->
     <div class="pub-card">
       <div class="pub-thumb">
-        <!-- SVG: layered membrane / tissue engineering -->
         <svg viewBox="0 0 130 100" xmlns="http://www.w3.org/2000/svg">
           <rect width="130" height="100" fill="#f0f4f8"/>
-          <!-- layered sheets -->
           <rect x="15" y="25" width="100" height="14" rx="3" fill="#90caf9" opacity=".85"/>
           <rect x="15" y="41" width="100" height="14" rx="3" fill="#64b5f6" opacity=".85"/>
           <rect x="15" y="57" width="100" height="14" rx="3" fill="#42a5f5" opacity=".85"/>
-          <!-- layer labels -->
           <text x="20" y="35" font-size="7" fill="#1a237e" font-family="sans-serif">amniotic layer 1</text>
           <text x="20" y="51" font-size="7" fill="#1a237e" font-family="sans-serif">amniotic layer 2</text>
           <text x="20" y="67" font-size="7" fill="#1a237e" font-family="sans-serif">amniotic layer 3</text>
-          <!-- bracket -->
           <path d="M120 25 L127 25 L127 71 L120 71" stroke="#555" stroke-width="1.2" fill="none"/>
           <text x="88" y="88" font-size="7" fill="#555" font-family="sans-serif">multi-layer scaffold</text>
         </svg>
@@ -527,17 +497,12 @@ footer a:hover{text-decoration:underline}
     <!-- PUB 5 -->
     <div class="pub-card">
       <div class="pub-thumb">
-        <!-- SVG: swimmer silhouette + performance chart -->
         <svg viewBox="0 0 130 100" xmlns="http://www.w3.org/2000/svg">
           <rect width="130" height="100" fill="#e8f5e9"/>
-          <!-- pool water -->
           <rect x="0" y="58" width="130" height="42" fill="#b2dfdb" opacity=".5"/>
-          <!-- swimmer silhouette -->
           <circle cx="30" cy="48" r="8" fill="#555"/>
           <path d="M30 56 Q50 62 70 56 Q80 52 90 56" stroke="#555" stroke-width="3" fill="none" stroke-linecap="round"/>
-          <!-- arms -->
           <path d="M38 52 Q55 44 72 52" stroke="#555" stroke-width="2.5" fill="none" stroke-linecap="round"/>
-          <!-- bar chart (performance) -->
           <rect x="80" y="45" width="8" height="20" fill="#388E3C" opacity=".8"/>
           <rect x="92" y="35" width="8" height="30" fill="#2196F3" opacity=".8"/>
           <rect x="104" y="40" width="8" height="25" fill="#c0392b" opacity=".8"/>
@@ -563,18 +528,14 @@ footer a:hover{text-decoration:underline}
 
     <div class="pub-card">
       <div class="pub-thumb">
-        <!-- SVG: open book + fish -->
         <svg viewBox="0 0 130 100" xmlns="http://www.w3.org/2000/svg">
           <rect width="130" height="100" fill="#f3e5f5"/>
-          <!-- book pages -->
           <path d="M20 25 L65 20 L65 80 L20 75 Z" fill="#ce93d8" opacity=".6"/>
           <path d="M65 20 L110 25 L110 75 L65 80 Z" fill="#ba68c8" opacity=".6"/>
           <line x1="65" y1="20" x2="65" y2="80" stroke="#7b1fa2" stroke-width="2"/>
-          <!-- text lines in book -->
           <line x1="27" y1="35" x2="58" y2="33" stroke="#fff" stroke-width="1.2" opacity=".8"/>
           <line x1="27" y1="43" x2="58" y2="41" stroke="#fff" stroke-width="1.2" opacity=".8"/>
           <line x1="27" y1="51" x2="58" y2="49" stroke="#fff" stroke-width="1.2" opacity=".8"/>
-          <!-- small fish on right page -->
           <ellipse cx="88" cy="50" rx="15" ry="6" fill="#2e7d9e"/>
           <path d="M103 50 L112 46 L112 54 Z" fill="#1a5c78"/>
           <circle cx="76" cy="49" r="2" fill="#fff"/>
@@ -598,17 +559,13 @@ footer a:hover{text-decoration:underline}
 
     <div class="pub-card">
       <div class="pub-thumb">
-        <!-- SVG: closed-loop control diagram -->
         <svg viewBox="0 0 130 100" xmlns="http://www.w3.org/2000/svg">
           <rect width="130" height="100" fill="#e8eaf6"/>
-          <!-- blocks -->
           <rect x="10" y="38" width="32" height="22" rx="4" fill="#3f51b5"/>
           <text x="17" y="52" font-size="6.5" fill="#fff" font-family="sans-serif">Controller</text>
           <rect x="90" y="38" width="32" height="22" rx="4" fill="#e65100"/>
           <text x="96" y="52" font-size="6.5" fill="#fff" font-family="sans-serif">Fish + Env</text>
-          <!-- arrows forward -->
           <path d="M42 49 L90 49" stroke="#333" stroke-width="1.5" marker-end="url(#a3)"/>
-          <!-- feedback arrow -->
           <path d="M106 60 L106 80 L26 80 L26 60" stroke="#333" stroke-width="1.5" fill="none" marker-end="url(#a3)"/>
           <defs>
             <marker id="a3" markerWidth="5" markerHeight="5" refX="4" refY="2.5" orient="auto">
@@ -633,20 +590,15 @@ footer a:hover{text-decoration:underline}
 
     <div class="pub-card">
       <div class="pub-thumb">
-        <!-- SVG: neural network / fish tracking -->
         <svg viewBox="0 0 130 100" xmlns="http://www.w3.org/2000/svg">
           <rect width="130" height="100" fill="#e8f5e9"/>
-          <!-- input nodes -->
           <circle cx="18" cy="30" r="5" fill="#388E3C"/>
           <circle cx="18" cy="50" r="5" fill="#388E3C"/>
           <circle cx="18" cy="70" r="5" fill="#388E3C"/>
-          <!-- hidden nodes -->
           <circle cx="55" cy="35" r="5" fill="#2196F3"/>
           <circle cx="55" cy="50" r="5" fill="#2196F3"/>
           <circle cx="55" cy="65" r="5" fill="#2196F3"/>
-          <!-- output node -->
           <circle cx="92" cy="50" r="6" fill="#c0392b"/>
-          <!-- connections -->
           <line x1="23" y1="30" x2="50" y2="35" stroke="#aaa" stroke-width=".8"/>
           <line x1="23" y1="30" x2="50" y2="50" stroke="#aaa" stroke-width=".8"/>
           <line x1="23" y1="50" x2="50" y2="35" stroke="#aaa" stroke-width=".8"/>
@@ -657,7 +609,6 @@ footer a:hover{text-decoration:underline}
           <line x1="60" y1="35" x2="86" y2="50" stroke="#aaa" stroke-width=".8"/>
           <line x1="60" y1="50" x2="86" y2="50" stroke="#aaa" stroke-width=".8"/>
           <line x1="60" y1="65" x2="86" y2="50" stroke="#aaa" stroke-width=".8"/>
-          <!-- small fish -->
           <ellipse cx="112" cy="50" rx="12" ry="5" fill="#2e7d9e"/>
           <path d="M124 50 L130 46 L130 54 Z" fill="#1a5c78"/>
           <text x="8" y="92" font-size="7" fill="#555" font-family="sans-serif">ANN-based nodal point tracking</text>
@@ -676,19 +627,15 @@ footer a:hover{text-decoration:underline}
 
     <div class="pub-card">
       <div class="pub-thumb">
-        <!-- SVG: zebrafish rheotaxis -->
         <svg viewBox="0 0 130 100" xmlns="http://www.w3.org/2000/svg">
           <rect width="130" height="100" fill="#e3f2fd"/>
-          <!-- water channel -->
           <rect x="10" y="30" width="110" height="40" rx="6" fill="#90caf9" opacity=".4"/>
-          <!-- zebrafish (stripes) -->
           <ellipse cx="65" cy="50" rx="20" ry="8" fill="#f5f5f5" stroke="#9e9e9e" stroke-width=".8"/>
           <line x1="58" y1="42" x2="58" y2="58" stroke="#555" stroke-width="1.2"/>
           <line x1="65" y1="42" x2="65" y2="58" stroke="#555" stroke-width="1.2"/>
           <line x1="72" y1="42" x2="72" y2="58" stroke="#555" stroke-width="1.2"/>
           <path d="M85 50 L98 44 L98 56 Z" fill="#bbb"/>
           <circle cx="47" cy="48" r="2.5" fill="#333"/>
-          <!-- current arrows (rheotaxis flow) -->
           <path d="M15 50 L30 50" stroke="#2196F3" stroke-width="1.5" marker-end="url(#a4)"/>
           <defs><marker id="a4" markerWidth="5" markerHeight="5" refX="4" refY="2.5" orient="auto"><path d="M0,0 L0,5 L5,2.5 Z" fill="#2196F3"/></marker></defs>
           <text x="12" y="84" font-size="7" fill="#1565C0" font-family="sans-serif">Zebrafish rheotaxis &amp; system ID</text>
@@ -705,14 +652,6 @@ footer a:hover{text-decoration:underline}
       </div>
     </div>
 
-  </section>
-
-  <!-- CONTACT -->
-  <section id="contact">
-    <h2 class="sec-title">contact</h2>
-    <div class="contact-row"><i class="fas fa-envelope"></i><span><a href="mailto:eminyusufaydin@gmail.com">eminyusufaydin@gmail.com</a></span></div>
-    <div class="contact-row"><i class="fas fa-map-marker-alt"></i><span>Dept. of Electrical &amp; Electronics Engineering<br>Hacettepe University, Beytepe Campus, Ankara 06800, T&uuml;rkiye</span></div>
-    <div class="contact-row"><i class="fab fa-linkedin"></i><span><a href="https://linkedin.com/in/eminyusufaydin" target="_blank">linkedin.com/in/eminyusufaydin</a></span></div>
   </section>
 
 </div>
