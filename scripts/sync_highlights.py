@@ -1,12 +1,14 @@
 #!/usr/bin/env python3
 import html
 import json
+import re
 from pathlib import Path
 from datetime import datetime, timezone
 
 ROOT = Path(__file__).resolve().parents[1]
 DATA = ROOT / 'data' / 'highlights.json'
 APPLE_DATA = ROOT / 'data' / 'apple_inbox.json'
+PROFILE_DATA = ROOT / 'data' / 'profile.json'
 OUT = ROOT / 'data' / 'highlights.generated.json'
 INDEX = ROOT / 'index.html'
 
@@ -26,6 +28,12 @@ def load_items(path):
         return []
     obj = json.loads(path.read_text(encoding='utf-8'))
     return obj.get('items', [])
+
+
+def load_profile():
+    if not PROFILE_DATA.exists():
+        return {}
+    return json.loads(PROFILE_DATA.read_text(encoding='utf-8'))
 
 
 def normalize(item):
@@ -147,10 +155,57 @@ def render_news(items):
     )
 
 
-def update_index(items):
+def update_profile(text, profile):
+    if not profile:
+        return text
+
+    role = html.escape(profile.get('role', ''))
+    institution = html.escape(profile.get('institution', ''))
+    location = html.escape(profile.get('location', ''))
+    about = profile.get('about', [])
+
+    if role:
+        text = re.sub(
+            r'<p class="hero-pos">.*?</p>',
+            f'<p class="hero-pos">{role}</p>',
+            text,
+            count=1,
+            flags=re.DOTALL,
+        )
+
+    if institution or location:
+        institution_line = ' · '.join(x for x in [institution, location] if x)
+        text = re.sub(
+            r'(<i class="fas fa-university"></i>\s*<span>).*?(</span>)',
+            rf'\1{institution_line}\2',
+            text,
+            count=1,
+            flags=re.DOTALL,
+        )
+
+    if about:
+        about_html = '\n'.join(
+            f'      <p>{html.escape(paragraph)}</p>'
+            for paragraph in about
+            if str(paragraph).strip()
+        )
+        text = re.sub(
+            r'(<section id="about">.*?<div class="about">)\s*.*?\s*(</div>\s*</section>)',
+            rf'\1\n{about_html}\n    \2',
+            text,
+            count=1,
+            flags=re.DOTALL,
+        )
+
+    return text
+
+
+def update_index(items, profile):
     if not INDEX.exists():
         return
     text = INDEX.read_text(encoding='utf-8')
+    text = update_profile(text, profile)
+
     start_marker = '  <!-- NEWS -->'
     end_marker = '  <!-- PUBLICATIONS -->'
     start = text.find(start_marker)
@@ -172,7 +227,7 @@ def main():
         'items': items,
     }
     OUT.write_text(json.dumps(payload, ensure_ascii=False, indent=2) + '\n', encoding='utf-8')
-    update_index(items)
+    update_index(items, load_profile())
 
 
 if __name__ == '__main__':
