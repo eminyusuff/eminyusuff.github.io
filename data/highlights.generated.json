@@ -1,6 +1,30 @@
 {
-  "generated_at": "2026-09-10T15:10:05.897577+00:00",
+  "generated_at": "2026-09-10T15:22:46.255213+00:00",
   "items": [
+    {
+      "type": "conference",
+      "date": "2026-08-28",
+      "title": "IFAC World Congress 2026",
+      "location": "Busan, South Korea",
+      "description": "Presented our work titled Anomaly Detection with Fuzzy Adaptive Kalman Filter on 3DoF Helicopter Model.",
+      "url": "",
+      "image": "",
+      "source": "manual",
+      "status": "approved",
+      "end_date": ""
+    },
+    {
+      "type": "award",
+      "date": "2026-08-10",
+      "title": "IBRO/SfN Travel Grant",
+      "location": "SfN Neuroscience 2026, Chicago, IL, USA",
+      "description": "Received an IBRO/SfN travel grant to support participation in Neuroscience 2026.",
+      "url": "",
+      "image": "",
+      "source": "manual",
+      "status": "approved",
+      "end_date": ""
+    },
     {
       "type": "degree",
       "date": "2026-07",
