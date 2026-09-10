@@ -7,8 +7,10 @@ on:
       - 'data/highlights.json'
       - 'data/apple_inbox.json'
       - 'data/profile.json'
+      - 'data/publications_seed.json'
       - 'scripts/sync_highlights.py'
       - 'scripts/sync_scholar.py'
+      - 'scripts/sync_publications.py'
       - '.github/workflows/sync-academic-site.yml'
   schedule:
     - cron: '15 4 * * *'
@@ -35,6 +37,9 @@ jobs:
       - name: Build academic highlights and profile sections
         run: python scripts/sync_highlights.py
 
+      - name: Verify and render published conference papers
+        run: python scripts/sync_publications.py
+
       - name: Commit generated changes
         run: |
           if git diff --quiet; then
@@ -43,6 +48,6 @@ jobs:
           fi
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add data/scholar_publications.json data/highlights.generated.json index.html
+          git add data/scholar_publications.json data/verified_publications.json data/highlights.generated.json index.html
           git commit -m "chore: sync academic site"
           git push
