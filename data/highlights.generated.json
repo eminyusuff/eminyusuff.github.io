@@ -1,6 +1,21 @@
 {
-  "generated_at": "2026-09-10T15:31:03.988587+00:00",
+  "generated_at": "2026-09-10T15:33:34.851043+00:00",
   "items": [
+    {
+      "type": "conference",
+      "date": "2026-11-14",
+      "end_date": "2026-11-18",
+      "title": "SfN Neuroscience 2026",
+      "location": "Washington, D.C., USA",
+      "description": "Registration completed for Neuroscience 2026; scheduled to present a poster at the meeting.",
+      "presentation_type": "Poster",
+      "work_title": "Selective Closed-Loop Manipulation of Active Sensing Movements in Weakly Electric Fish",
+      "url": "",
+      "image": "",
+      "source": "manual",
+      "status": "approved",
+      "work_url": ""
+    },
     {
       "type": "conference",
       "date": "2026-08-28",
@@ -20,7 +35,7 @@
       "type": "award",
       "date": "2026-08-10",
       "title": "IBRO/SfN Travel Grant",
-      "location": "SfN Neuroscience 2026, Chicago, IL, USA",
+      "location": "SfN Neuroscience 2026, Washington, D.C., USA",
       "description": "Received an IBRO/SfN travel grant to support participation in Neuroscience 2026.",
       "url": "",
       "image": "",
