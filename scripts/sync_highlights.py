@@ -1,4 +1,5 @@
 #!/usr/bin/env python3
+import html
 import json
 from pathlib import Path
 from datetime import datetime, timezone
@@ -7,6 +8,17 @@ ROOT = Path(__file__).resolve().parents[1]
 DATA = ROOT / 'data' / 'highlights.json'
 APPLE_DATA = ROOT / 'data' / 'apple_inbox.json'
 OUT = ROOT / 'data' / 'highlights.generated.json'
+INDEX = ROOT / 'index.html'
+
+BADGE_CLASS = {
+    'publication': 'badge-green',
+    'conference': 'badge-orange',
+    'workshop': 'badge-teal',
+    'training': 'badge-blue',
+    'award': 'badge-purple',
+    'grant': 'badge-purple',
+    'degree': 'badge-purple',
+}
 
 
 def load_items(path):
@@ -34,21 +46,12 @@ def normalize(item):
 def eligible(item):
     source = item.get('source', 'manual')
     status = item.get('status', 'approved')
-
-    # Manually curated highlights require explicit approval.
     if source == 'manual':
         return status == 'approved'
-
-    # A dedicated Apple Calendar called "Academic Website" is an explicit
-    # publishing source. Both past and upcoming events may appear on the site.
     if source == 'apple_calendar':
         return status in {'attended', 'upcoming', 'confirmed'}
-
-    # Reminders act as a quick-capture inbox. Only completed reminders are
-    # considered confirmed enough to publish.
     if source == 'apple_reminders':
         return status == 'confirmed'
-
     return status == 'approved'
 
 
@@ -68,6 +71,96 @@ def dedupe(items):
     return out
 
 
+def display_date(value):
+    if not value:
+        return ''
+    months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec']
+    try:
+        if len(value) >= 7 and value[4] == '-':
+            year = value[:4]
+            month = int(value[5:7])
+            if 1 <= month <= 12:
+                return f'{months[month - 1]} {year}'
+        return value[:4] if len(value) >= 4 else value
+    except Exception:
+        return value
+
+
+def render_news(items):
+    rows = []
+    for item in items:
+        badge = BADGE_CLASS.get(item.get('type'), 'badge-gray')
+        date_label = html.escape(display_date(item.get('date', '')))
+        title = html.escape(item.get('title', ''))
+        description = html.escape(item.get('description', ''))
+        location = html.escape(item.get('location', ''))
+        url = item.get('url', '')
+        image = item.get('image', '')
+        status = item.get('status', '')
+
+        if url:
+            title_html = f'<a href="{html.escape(url, quote=True)}" target="_blank"><strong>{title}</strong></a>'
+        else:
+            title_html = f'<strong>{title}</strong>'
+
+        detail_parts = []
+        if description:
+            detail_parts.append(description)
+        if location:
+            detail_parts.append(location)
+        details = ' — '.join(detail_parts)
+
+        status_prefix = ''
+        if item.get('source') == 'apple_calendar' and status == 'upcoming':
+            status_prefix = '<em>Upcoming:</em> '
+
+        image_html = ''
+        if image:
+            safe_image = html.escape(image, quote=True)
+            image_html = (
+                f'<br><a href="{safe_image}" target="_blank">'
+                f'<img src="{safe_image}" alt="{title}" '
+                'style="margin-top:.65rem;max-width:260px;width:100%;height:auto;border-radius:8px;border:1px solid var(--border);">'
+                '</a>'
+            )
+
+        text = f'{status_prefix}{title_html}'
+        if details:
+            text += f' — {details}'
+        text += image_html
+
+        rows.append(
+            '      <div class="news-row">\n'
+            f'        <span class="badge {badge}">{date_label}</span>\n'
+            f'        <p class="news-text">{text}</p>\n'
+            '      </div>'
+        )
+
+    return (
+        '  <!-- NEWS -->\n'
+        '  <section id="news">\n'
+        '    <h2 class="sec-title">News</h2>\n'
+        '    <div class="news-list">\n'
+        + '\n'.join(rows)
+        + '\n    </div>\n'
+        '  </section>\n\n'
+    )
+
+
+def update_index(items):
+    if not INDEX.exists():
+        return
+    text = INDEX.read_text(encoding='utf-8')
+    start_marker = '  <!-- NEWS -->'
+    end_marker = '  <!-- PUBLICATIONS -->'
+    start = text.find(start_marker)
+    end = text.find(end_marker)
+    if start == -1 or end == -1 or end <= start:
+        raise RuntimeError('Could not locate NEWS/PUBLICATIONS markers in index.html')
+    new_text = text[:start] + render_news(items) + text[end:]
+    INDEX.write_text(new_text, encoding='utf-8')
+
+
 def main():
     raw = load_items(DATA) + load_items(APPLE_DATA)
     items = [normalize(x) for x in raw]
@@ -79,6 +172,7 @@ def main():
         'items': items,
     }
     OUT.write_text(json.dumps(payload, ensure_ascii=False, indent=2) + '\n', encoding='utf-8')
+    update_index(items)
 
 
 if __name__ == '__main__':
