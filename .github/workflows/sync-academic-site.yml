@@ -8,6 +8,7 @@ on:
       - 'data/apple_inbox.json'
       - 'data/profile.json'
       - 'scripts/sync_highlights.py'
+      - 'scripts/sync_scholar.py'
       - '.github/workflows/sync-academic-site.yml'
   schedule:
     - cron: '15 4 * * *'
@@ -28,6 +29,9 @@ jobs:
         with:
           python-version: '3.12'
 
+      - name: Discover works from Google Scholar
+        run: python scripts/sync_scholar.py
+
       - name: Build academic highlights and profile sections
         run: python scripts/sync_highlights.py
 
@@ -39,6 +43,6 @@ jobs:
           fi
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add data/highlights.generated.json index.html
+          git add data/scholar_publications.json data/highlights.generated.json index.html
           git commit -m "chore: sync academic site"
           git push
