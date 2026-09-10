@@ -1,0 +1,24 @@
+{
+  "version": 1,
+  "items": [
+    {
+      "type": "proceedings-article",
+      "title": "Aktif Algılama ve Takip Hareketlerinin Gerçek Zamanlı Ayrıştırılması için Yapı-Farkındalıklı Filtreleme",
+      "display_title": "Structure-Aware Filtering for Real-Time Separation of Active-Sensing and Tracking Motions",
+      "authors": [
+        "Emin Yusuf Aydin",
+        "Onurcan Yilmaz",
+        "Ismail Uyanik",
+        "Mustafa Ozturk"
+      ],
+      "authors_html": "<strong>Ayd&#305;n, E. Y.</strong>, Y&#305;lmaz, O., Uyan&#305;k, &#304;. &amp; &Ouml;zt&uuml;rk, M.",
+      "venue": "SIU 2026 - 34th Signal Processing and Communications Applications Conference, Conference Proceedings",
+      "publisher": "IEEE",
+      "year": "2026",
+      "doi": "10.1109/SIU71813.2026.11636672",
+      "url": "https://doi.org/10.1109/SIU71813.2026.11636672",
+      "source": "manual_publisher_verified",
+      "status": "published"
+    }
+  ]
+}
