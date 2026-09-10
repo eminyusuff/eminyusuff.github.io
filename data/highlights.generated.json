@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-09-10T15:46:04.550748+00:00",
+  "generated_at": "2026-09-10T16:04:54.953927+00:00",
   "items": [
     {
       "type": "conference",
@@ -67,14 +67,14 @@
       "title": "PhD Defense completed",
       "location": "Hacettepe University, Ankara",
       "description": "Successfully completed my PhD defense in Bioengineering.",
+      "presentation_type": "PhD thesis",
+      "work_title": "Modeling the Role of Active Sensing Movements in Weakly Electric Fish During Refuge Tracking Behavior",
       "url": "",
       "image": "",
       "source": "manual",
       "status": "approved",
       "end_date": "",
-      "work_title": "",
-      "work_url": "",
-      "presentation_type": ""
+      "work_url": ""
     },
     {
       "type": "workshop",
