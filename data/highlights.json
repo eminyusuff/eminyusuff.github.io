@@ -91,11 +91,12 @@
     },
     {
       "type": "training",
-      "date": "2026-01",
-      "title": "Training academy in Denmark",
-      "location": "Copenhagen and Roskilde, Denmark",
-      "description": "Attended a training academy in Copenhagen and Roskilde.",
-      "url": "",
+      "date": "2026-01-12",
+      "end_date": "2026-01-16",
+      "title": "METEOR Programme – First Academy",
+      "location": "Roskilde University, Denmark",
+      "description": "Participated in the first in-person METEOR Academy as part of the ongoing Horizon Europe METEOR Programme. The programme continues through peer mentoring, online training, a second academy, and development of a Transformative Research and Innovation Proposal (TRIP).",
+      "url": "https://www.meteorhorizon.eu/meteor-programme/",
       "image": "",
       "source": "manual",
       "status": "approved"
@@ -125,17 +126,6 @@
       "status": "approved"
     },
     {
-      "type": "training",
-      "date": "2025",
-      "title": "METEOR training completed",
-      "location": "Europe",
-      "description": "Completed EU-funded training on interdisciplinary collaboration and career development for early-stage researchers.",
-      "url": "",
-      "image": "",
-      "source": "manual",
-      "status": "approved"
-    },
-    {
       "type": "conference",
       "date": "2024-10",
       "title": "SfN Neuroscience 2024",
@@ -153,8 +143,8 @@
       "date": "2024-06",
       "title": "FENS Forum 2024",
       "location": "Vienna, Austria",
-      "description": "Presented research at FENS Forum 2024.",
-      "presentation_type": "Presentation",
+      "description": "Presented a poster at FENS Forum 2024.",
+      "presentation_type": "Poster",
       "work_title": "A Fish-in-the-loop System to Study the Underlying Mechanisms of Active Sensing",
       "url": "",
       "image": "",
