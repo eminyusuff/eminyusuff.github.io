@@ -1,4 +1,115 @@
 {
   "version": 1,
-  "items": []
+  "items": [
+    {
+      "type": "degree",
+      "date": "2026-07",
+      "title": "PhD Defense completed",
+      "location": "Hacettepe University, Ankara",
+      "description": "Successfully completed my PhD defense in Bioengineering.",
+      "url": "",
+      "image": "",
+      "source": "manual",
+      "status": "approved"
+    },
+    {
+      "type": "workshop",
+      "date": "2026-06",
+      "title": "Workshop in Wageningen",
+      "location": "Wageningen, Netherlands",
+      "description": "Attended an academic workshop in Wageningen, Netherlands.",
+      "url": "",
+      "image": "",
+      "source": "manual",
+      "status": "approved"
+    },
+    {
+      "type": "conference",
+      "date": "2026-03",
+      "title": "34th SIU Conference",
+      "location": "Türkiye",
+      "description": "Prepared a technical paper comparing IIR and FIR filtering for biological signal decomposition.",
+      "url": "",
+      "image": "",
+      "source": "manual",
+      "status": "approved"
+    },
+    {
+      "type": "publication",
+      "date": "2026-01",
+      "title": "Journal of Experimental Biology paper",
+      "location": "",
+      "description": "Flow impairs multisensory tracking and increases active sensing in weakly electric fish.",
+      "url": "https://doi.org/10.1242/jeb.251478",
+      "image": "",
+      "source": "manual",
+      "status": "approved"
+    },
+    {
+      "type": "training",
+      "date": "2026-01",
+      "title": "Training academy in Denmark",
+      "location": "Copenhagen and Roskilde, Denmark",
+      "description": "Attended a training academy in Copenhagen and Roskilde.",
+      "url": "",
+      "image": "",
+      "source": "manual",
+      "status": "approved"
+    },
+    {
+      "type": "conference",
+      "date": "2025-11",
+      "title": "SfN Neuroscience 2025",
+      "location": "San Diego, CA, USA",
+      "description": "Presented the poster: Adaptation of Active Sensing Responses to Sensory Manipulations in Weakly Electric Fish.",
+      "url": "",
+      "image": "",
+      "source": "manual",
+      "status": "approved"
+    },
+    {
+      "type": "publication",
+      "date": "2025",
+      "title": "Bioinspiration & Biomimetics paper",
+      "location": "",
+      "description": "Predictive Uncertainty in State-Estimation Drives Active Sensing in Weakly Electric Fish.",
+      "url": "https://doi.org/10.1088/1748-3190/ad9534",
+      "image": "",
+      "source": "manual",
+      "status": "approved"
+    },
+    {
+      "type": "training",
+      "date": "2025",
+      "title": "METEOR training completed",
+      "location": "Europe",
+      "description": "Completed EU-funded training on interdisciplinary collaboration and career development for early-stage researchers.",
+      "url": "",
+      "image": "",
+      "source": "manual",
+      "status": "approved"
+    },
+    {
+      "type": "conference",
+      "date": "2024-10",
+      "title": "SfN Neuroscience 2024",
+      "location": "Chicago, IL, USA",
+      "description": "Presented: A fish-in-the-loop comparison of various active sensing models.",
+      "url": "",
+      "image": "",
+      "source": "manual",
+      "status": "approved"
+    },
+    {
+      "type": "conference",
+      "date": "2024-06",
+      "title": "FENS Forum 2024",
+      "location": "Vienna, Austria",
+      "description": "Presented: A Fish-in-the-loop System to Study the Underlying Mechanisms of Active Sensing.",
+      "url": "",
+      "image": "",
+      "source": "manual",
+      "status": "approved"
+    }
+  ]
 }
