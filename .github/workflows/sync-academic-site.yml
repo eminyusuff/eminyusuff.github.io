@@ -1,6 +1,13 @@
 name: Sync academic site
 
 on:
+  push:
+    branches: [main]
+    paths:
+      - 'data/highlights.json'
+      - 'data/apple_inbox.json'
+      - 'scripts/sync_highlights.py'
+      - '.github/workflows/sync-academic-site.yml'
   schedule:
     - cron: '15 4 * * *'
   workflow_dispatch:
