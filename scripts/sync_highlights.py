@@ -8,6 +8,7 @@ from datetime import datetime, timezone
 ROOT = Path(__file__).resolve().parents[1]
 DATA = ROOT / 'data' / 'highlights.json'
 APPLE_DATA = ROOT / 'data' / 'apple_inbox.json'
+SCHOLAR_DATA = ROOT / 'data' / 'scholar_publications.json'
 PROFILE_DATA = ROOT / 'data' / 'profile.json'
 OUT = ROOT / 'data' / 'highlights.generated.json'
 INDEX = ROOT / 'index.html'
@@ -22,18 +23,25 @@ BADGE_CLASS = {
     'degree': 'badge-purple',
 }
 
+STOPWORDS = {
+    'the', 'and', 'of', 'in', 'on', 'for', 'at', 'to', 'a', 'an', 'with',
+    'conference', 'congress', 'forum', 'symposium', 'meeting', 'annual',
+    'international', 'applications', 'application', 'proceedings', 'ieee',
+}
+
+
+def load_json(path):
+    if not path.exists():
+        return {}
+    return json.loads(path.read_text(encoding='utf-8'))
+
 
 def load_items(path):
-    if not path.exists():
-        return []
-    obj = json.loads(path.read_text(encoding='utf-8'))
-    return obj.get('items', [])
+    return load_json(path).get('items', [])
 
 
 def load_profile():
-    if not PROFILE_DATA.exists():
-        return {}
-    return json.loads(PROFILE_DATA.read_text(encoding='utf-8'))
+    return load_json(PROFILE_DATA)
 
 
 def normalize(item):
@@ -46,6 +54,9 @@ def normalize(item):
     item.setdefault('description', '')
     item.setdefault('url', '')
     item.setdefault('image', '')
+    item.setdefault('work_title', '')
+    item.setdefault('work_url', '')
+    item.setdefault('presentation_type', '')
     item.setdefault('source', 'manual')
     item.setdefault('status', 'approved')
     return item
@@ -79,6 +90,76 @@ def dedupe(items):
     return out
 
 
+def tokens(value):
+    raw = re.findall(r'[a-z0-9]+', (value or '').lower())
+    return {x for x in raw if len(x) > 2 and x not in STOPWORDS and not x.isdigit()}
+
+
+def acronym(value):
+    match = re.findall(r'\(([A-Za-z0-9-]{2,10})\)', value or '')
+    if match:
+        return match[-1].lower()
+    caps = re.findall(r'\b[A-Z][A-Z0-9-]{2,10}\b', value or '')
+    return caps[-1].lower() if caps else ''
+
+
+def scholar_match_score(event, work):
+    event_year = (event.get('date') or '')[:4]
+    work_year = str(work.get('year') or '')
+    if event_year and work_year and event_year != work_year:
+        return 0.0
+
+    event_text = event.get('title', '')
+    work_text = ' '.join([work.get('venue', ''), work.get('title', '')])
+    event_tokens = tokens(event_text)
+    work_tokens = tokens(work_text)
+
+    score = 0.0
+    if event_tokens:
+        score = len(event_tokens & work_tokens) / len(event_tokens)
+
+    acro = acronym(event_text)
+    if acro and re.search(rf'\b{re.escape(acro)}\b', work_text.lower()):
+        score = max(score, 0.85)
+
+    return score
+
+
+def enrich_from_scholar(items, works):
+    used = set()
+    for item in items:
+        if item.get('type') not in {'conference', 'workshop'}:
+            continue
+        if item.get('work_title'):
+            continue
+
+        candidates = []
+        for idx, work in enumerate(works):
+            if idx in used:
+                continue
+            score = scholar_match_score(item, work)
+            if score >= 0.45:
+                candidates.append((score, idx, work))
+
+        if not candidates:
+            continue
+
+        candidates.sort(key=lambda x: x[0], reverse=True)
+        best_score, idx, best = candidates[0]
+        if len(candidates) > 1 and candidates[1][0] >= best_score - 0.08:
+            # Ambiguous: do not guess between similarly plausible works.
+            continue
+
+        item['work_title'] = best.get('title', '')
+        item['work_url'] = best.get('url', '')
+        item['work_source'] = 'google_scholar'
+        if not item.get('presentation_type'):
+            item['presentation_type'] = 'Presented work'
+        used.add(idx)
+
+    return items
+
+
 def display_date(value):
     if not value:
         return ''
@@ -105,6 +186,9 @@ def render_news(items):
         url = item.get('url', '')
         image = item.get('image', '')
         status = item.get('status', '')
+        work_title = html.escape(item.get('work_title', ''))
+        work_url = item.get('work_url', '')
+        presentation_type = html.escape(item.get('presentation_type', ''))
 
         if url:
             title_html = f'<a href="{html.escape(url, quote=True)}" target="_blank"><strong>{title}</strong></a>'
@@ -122,6 +206,15 @@ def render_news(items):
         if item.get('source') == 'apple_calendar' and status == 'upcoming':
             status_prefix = '<em>Upcoming:</em> '
 
+        work_html = ''
+        if work_title:
+            if work_url:
+                work_name = f'<a href="{html.escape(work_url, quote=True)}" target="_blank">{work_title}</a>'
+            else:
+                work_name = work_title
+            label = presentation_type or 'Presented work'
+            work_html = f'<br><span style="color:var(--text3)"><em>{label}:</em> {work_name}</span>'
+
         image_html = ''
         if image:
             safe_image = html.escape(image, quote=True)
@@ -135,7 +228,7 @@ def render_news(items):
         text = f'{status_prefix}{title_html}'
         if details:
             text += f' — {details}'
-        text += image_html
+        text += work_html + image_html
 
         rows.append(
             '      <div class="news-row">\n'
@@ -221,6 +314,7 @@ def main():
     items = [normalize(x) for x in raw]
     items = [x for x in items if eligible(x)]
     items = dedupe(items)
+    items = enrich_from_scholar(items, load_items(SCHOLAR_DATA))
     items.sort(key=lambda x: x.get('date', ''), reverse=True)
     payload = {
         'generated_at': datetime.now(timezone.utc).isoformat(),
