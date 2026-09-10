@@ -530,7 +530,7 @@ footer a:hover{text-decoration:underline}
         </svg>
       </div>
       <div class="pub-body">
-        <p class="pub-ptitle">Bedensel engelli y&uuml;z&uuml;c&uuml;lerde &ccedil;&#305;k&#305;&#351; s&uuml;resinin g&ouml;vde esnekli&#287;i, aerobik endurans ve anaerobik g&uuml;&ccedil; ile ili&#351;kisi</p>
+        <p class="pub-ptitle"><a href="https://dergipark.org.tr/en/pub/jetr/issue/56637/512289" target="_blank">Bedensel engelli y&uuml;z&uuml;c&uuml;lerde &ccedil;&#305;k&#305;&#351; s&uuml;resinin g&ouml;vde esnekli&#287;i, aerobik endurans ve anaerobik g&uuml;&ccedil; ile ili&#351;kisi</a></p>
         <p class="pub-authors">Seyhan, R. G., Tunay, V. B., G&ouml;ks&uuml;l&uuml;k, D., <strong>Ayd&#305;n, E. Y.</strong>, &amp; Ergun, N.</p>
         <p class="pub-venue">Journal of Exercise Therapy and Rehabilitation, 7(2), 186&ndash;192, 2020</p>
         <!--
@@ -563,7 +563,7 @@ footer a:hover{text-decoration:underline}
         </svg>
       </div>
       <div class="pub-body">
-        <p class="pub-ptitle">A Case Study as a Multisensory Integration Model: Weakly Electric Fish</p>
+        <p class="pub-ptitle"><a href="https://www.turkiyeklinikleri.com/article/en-coklu-duyusal-entegrasyon-modeli-olarak-ornek-bir-calisma-zayif-elektrik-baligi-104853.html" target="_blank">A Case Study as a Multisensory Integration Model: Weakly Electric Fish</a></p>
         <p class="pub-authors"><strong>Ayd&#305;n, E. Y.</strong> &amp; Uyanik, I.</p>
         <p class="pub-venue">Use of Zebrafish as a Model Organism (Ed. Din&ccedil;er PR) &middot; T&uuml;rkiye Klinikleri, pp. 104&ndash;9, 2023</p>
         <!--
@@ -620,7 +620,7 @@ footer a:hover{text-decoration:underline}
         </svg>
       </div>
       <div class="pub-body">
-        <p class="pub-ptitle">Reshaping Active Sensing via Closing a Feedback Loop Around Free Behavior</p>
+        <p class="pub-ptitle"><a href="https://doi.org/10.1109/SIU61531.2024.10601043" target="_blank">Reshaping Active Sensing via Closing a Feedback Loop Around Free Behavior</a></p>
         <p class="pub-authors">Top&ccedil;akar, S., <strong>Ayd&#305;n, E. Y.</strong>, Demirel, A., &amp; Uyan&#305;k, &#304;.</p>
         <p class="pub-venue">32nd IEEE Signal Processing and Communications Applications Conference (SIU), 2024</p>
         <!--
@@ -659,7 +659,7 @@ footer a:hover{text-decoration:underline}
         </svg>
       </div>
       <div class="pub-body">
-        <p class="pub-ptitle">Tracking the Nodal Point of Weakly Electric Fish Using Artificial Neural Networks</p>
+        <p class="pub-ptitle"><a href="https://doi.org/10.1109/SIU59756.2023.10223776" target="_blank">Tracking the Nodal Point of Weakly Electric Fish Using Artificial Neural Networks</a></p>
         <p class="pub-authors">&Ccedil;atalba&#351;, B., Elikuru, D., <strong>Ayd&#305;n, E. Y.</strong>, &amp; Uyanik, &#304;.</p>
         <p class="pub-venue">31st IEEE Signal Processing and Communications Applications Conference (SIU), 2023</p>
         <!--
@@ -688,7 +688,7 @@ footer a:hover{text-decoration:underline}
         </svg>
       </div>
       <div class="pub-body">
-        <p class="pub-ptitle">System Identification of the Target Tracking Behavior of Zebrafish During Rheotaxis</p>
+        <p class="pub-ptitle"><a href="https://doi.org/10.1109/SIU55565.2022.9864905" target="_blank">System Identification of the Target Tracking Behavior of Zebrafish During Rheotaxis</a></p>
         <p class="pub-authors">Ko&ccedil;, O., Demirel, A., <strong>Ayd&#305;n, E. Y.</strong>, &#304;bi&#351;o&#287;lu, F., et al.</p>
         <p class="pub-venue">30th IEEE Signal Processing and Communications Applications Conference (SIU), 2022</p>
         <!--
@@ -746,5 +746,32 @@ themeToggle.addEventListener('click', () => {
   }
 });
 </script>
+<!-- PUBLICATION CARD LINKS START -->
+<script>
+document.querySelectorAll('#publications .pub-card').forEach((card) => {
+  const target = card.querySelector('.pub-ptitle a[href], .pub-links a[href]');
+  if (!target) return;
+
+  card.style.cursor = 'pointer';
+  card.setAttribute('tabindex', '0');
+  card.setAttribute('role', 'link');
+  card.setAttribute('aria-label', `Open publication: ${card.querySelector('.pub-ptitle')?.innerText || 'publication'}`);
+
+  const openPublication = () => window.open(target.href, '_blank', 'noopener,noreferrer');
+
+  card.addEventListener('click', (event) => {
+    if (event.target.closest('a')) return;
+    openPublication();
+  });
+
+  card.addEventListener('keydown', (event) => {
+    if (event.key === 'Enter' || event.key === ' ') {
+      event.preventDefault();
+      openPublication();
+    }
+  });
+});
+</script>
+<!-- PUBLICATION CARD LINKS END -->
 </body>
 </html>
