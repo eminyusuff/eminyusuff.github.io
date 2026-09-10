@@ -6,6 +6,7 @@ on:
     paths:
       - 'data/highlights.json'
       - 'data/apple_inbox.json'
+      - 'data/profile.json'
       - 'scripts/sync_highlights.py'
       - '.github/workflows/sync-academic-site.yml'
   schedule:
@@ -27,7 +28,7 @@ jobs:
         with:
           python-version: '3.12'
 
-      - name: Build academic highlights and News section
+      - name: Build academic highlights and profile sections
         run: python scripts/sync_highlights.py
 
       - name: Commit generated changes
@@ -39,5 +40,5 @@ jobs:
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git add data/highlights.generated.json index.html
-          git commit -m "chore: sync academic highlights"
+          git commit -m "chore: sync academic site"
           git push
