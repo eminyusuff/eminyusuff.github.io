@@ -8,6 +8,7 @@ Policy:
 - Only proceedings-article records are auto-rendered in the Conference Papers section.
 - Posters, abstracts, talks, registrations, and conference-program-only entries are excluded.
 - Seeded records are manually verified and provide a reliable baseline if APIs are unavailable.
+- Every publication card is linked to an official DOI, publisher, or journal record when available.
 """
 
 from __future__ import annotations
@@ -36,6 +37,23 @@ CONFERENCE_LABEL = (
     '    <div class="pub-block-label" style="margin-top:2rem">'
     "Conference Papers (Peer-Reviewed)</div>"
 )
+CARD_SCRIPT_START = "<!-- PUBLICATION CARD LINKS START -->"
+CARD_SCRIPT_END = "<!-- PUBLICATION CARD LINKS END -->"
+
+# Official landing pages for legacy/static publications that were originally
+# rendered without links in index.html. DOI links are preferred when present.
+STATIC_PUBLICATION_LINKS = {
+    "bedensel engelli yuzuculerde cikis suresinin govde esnekligi aerobik endurans ve anaerobik guc ile iliskisi":
+        "https://dergipark.org.tr/en/pub/jetr/issue/56637/512289",
+    "a case study as a multisensory integration model weakly electric fish":
+        "https://www.turkiyeklinikleri.com/article/en-coklu-duyusal-entegrasyon-modeli-olarak-ornek-bir-calisma-zayif-elektrik-baligi-104853.html",
+    "reshaping active sensing via closing a feedback loop around free behavior":
+        "https://doi.org/10.1109/SIU61531.2024.10601043",
+    "tracking the nodal point of weakly electric fish using artificial neural networks":
+        "https://doi.org/10.1109/SIU59756.2023.10223776",
+    "system identification of the target tracking behavior of zebrafish during rheotaxis":
+        "https://doi.org/10.1109/SIU55565.2022.9864905",
+}
 
 
 def load_json(path: Path) -> dict:
@@ -264,6 +282,65 @@ def render_card(item: dict) -> str:
     )
 
 
+def add_missing_static_links(text: str) -> str:
+    """Link legacy publication titles that predate the automated renderer."""
+    pattern = re.compile(r'<p class="pub-ptitle">(?!\s*<a\b)(.*?)</p>', re.DOTALL)
+
+    def repl(match: re.Match) -> str:
+        raw_title = match.group(1)
+        plain_title = html.unescape(re.sub(r"<[^>]+>", "", raw_title)).strip()
+        url = STATIC_PUBLICATION_LINKS.get(fold(plain_title))
+        if not url:
+            return match.group(0)
+        return (
+            '<p class="pub-ptitle">'
+            f'<a href="{html.escape(url, quote=True)}" target="_blank">{raw_title}</a>'
+            "</p>"
+        )
+
+    return pattern.sub(repl, text)
+
+
+def add_publication_card_click_behavior(text: str) -> str:
+    """Make the complete publication card open its title/DOI link."""
+    block = """<!-- PUBLICATION CARD LINKS START -->
+<script>
+document.querySelectorAll('#publications .pub-card').forEach((card) => {
+  const target = card.querySelector('.pub-ptitle a[href], .pub-links a[href]');
+  if (!target) return;
+
+  card.style.cursor = 'pointer';
+  card.setAttribute('tabindex', '0');
+  card.setAttribute('role', 'link');
+  card.setAttribute('aria-label', `Open publication: ${card.querySelector('.pub-ptitle')?.innerText || 'publication'}`);
+
+  const openPublication = () => window.open(target.href, '_blank', 'noopener,noreferrer');
+
+  card.addEventListener('click', (event) => {
+    if (event.target.closest('a')) return;
+    openPublication();
+  });
+
+  card.addEventListener('keydown', (event) => {
+    if (event.key === 'Enter' || event.key === ' ') {
+      event.preventDefault();
+      openPublication();
+    }
+  });
+});
+</script>
+<!-- PUBLICATION CARD LINKS END -->"""
+
+    if CARD_SCRIPT_START in text and CARD_SCRIPT_END in text:
+        start = text.index(CARD_SCRIPT_START)
+        end = text.index(CARD_SCRIPT_END) + len(CARD_SCRIPT_END)
+        return text[:start] + block + text[end:]
+
+    if "</body>" not in text:
+        raise RuntimeError("Closing body tag not found in index.html")
+    return text.replace("</body>", block + "\n</body>", 1)
+
+
 def render_publications(items: list[dict]) -> None:
     proceedings = [
         x
@@ -309,6 +386,8 @@ def render_publications(items: list[dict]) -> None:
             1,
         )
 
+    new_text = add_missing_static_links(new_text)
+    new_text = add_publication_card_click_behavior(new_text)
     INDEX.write_text(new_text, encoding="utf-8")
 
 
