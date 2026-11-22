@@ -3,7 +3,48 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Emin Yusuf AYDIN</title>
+<title>Emin Yusuf AYDIN · Active Sensing &amp; Sensorimotor Control</title>
+<meta name="description" content="Emin Yusuf AYDIN – PhD in Bioengineering (Hacettepe University). Research on active sensing, multisensory integration and sensorimotor control in weakly electric fish, system identification and bioinspired sensing.">
+<meta name="author" content="Emin Yusuf AYDIN">
+<link rel="canonical" href="https://eminyusuff.github.io/">
+<!-- Social previews (LinkedIn, WhatsApp, X, Slack) -->
+<meta property="og:type" content="profile">
+<meta property="og:title" content="Emin Yusuf AYDIN">
+<meta property="og:description" content="Active sensing, multisensory integration and sensorimotor control in weakly electric fish; system identification and bioinspired sensing.">
+<meta property="og:url" content="https://eminyusuff.github.io/">
+<meta property="og:image" content="https://eminyusuff.github.io/profile.png">
+<meta name="twitter:card" content="summary">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%23c0392b'/%3E%3Ctext x='32' y='42' font-family='Georgia,serif' font-size='28' fill='white' text-anchor='middle'%3EEYA%3C/text%3E%3C/svg%3E">
+<link rel="apple-touch-icon" href="profile.png">
+<meta name="theme-color" content="#ffffff" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#0f1117" media="(prefers-color-scheme: dark)">
+<!-- Structured data: helps Google show a proper profile result -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Person",
+  "name": "Emin Yusuf AYDIN",
+  "url": "https://eminyusuff.github.io/",
+  "image": "https://eminyusuff.github.io/profile.png",
+  "email": "mailto:eminyusufaydin@gmail.com",
+  "alumniOf": {"@type": "CollegeOrUniversity", "name": "Hacettepe University"},
+  "knowsAbout": ["Active sensing", "Multisensory integration", "Sensorimotor control", "Weakly electric fish", "System identification", "Bioinspired robotics"],
+  "sameAs": [
+    "https://scholar.google.com/citations?user=3kCPuu8AAAAJ",
+    "https://github.com/eminyusuff",
+    "https://www.linkedin.com/in/eminyusufaydin"
+  ]
+}
+</script>
+<!-- Apply saved / system theme before first paint (prevents a white flash in dark mode) -->
+<script>
+(function () {
+  var saved = null;
+  try { saved = localStorage.getItem('theme'); } catch (e) {}
+  var dark = saved ? saved === 'dark' : window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+  if (dark) document.documentElement.classList.add('dark');
+})();
+</script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,600&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
@@ -244,16 +285,32 @@ footer a:hover{text-decoration:underline}
 .hero-left{animation:fadeUp .45s ease .05s both}
 .hero-photo{animation:fadeUp .45s ease .15s both}
 
+/* Social links inside the hero (shown on small screens, where the topbar has no room) */
+.hero-links{display:none;gap:7px;margin-top:1.1rem}
+.hero-links a{width:34px;height:34px;border-radius:7px;display:flex;align-items:center;justify-content:center;font-size:1rem}
+.upcoming-tag{display:inline-block;font-size:.68rem;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--accent);border:1px solid var(--accent);border-radius:4px;padding:0 .35rem;margin-right:.35rem;vertical-align:1px}
+:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+
 /* RESPONSIVE */
 @media(max-width:680px){
   .topbar{padding:0 16px}
-  .topbar-right{gap:.8rem}
+  .topbar .social-icons{display:none}
+  .topbar-right{gap:.9rem;margin-left:auto}
+  .topnav{gap:1.1rem}
+  .topnav a{font-size:.82rem}
   .page{padding:0 20px}
-  .hero{grid-template-columns:1fr}
-  .hero-photo{width:140px;height:140px}
+  .hero{grid-template-columns:1fr;gap:1.4rem;padding-top:2.2rem}
+  .hero-photo{width:120px;height:120px;order:-1;margin-top:0}
   .hero-name{font-size:2.3rem}
+  .hero-links{display:flex}
+  .about p{text-align:left}
+  .news-row{flex-direction:column;gap:.35rem}
   .pub-card{grid-template-columns:1fr}
   .pub-thumb{width:100%;height:140px}
+}
+@media(prefers-reduced-motion:reduce){
+  html{scroll-behavior:auto}
+  .hero-left,.hero-photo{animation:none}
 }
 </style>
 </head>
@@ -262,18 +319,19 @@ footer a:hover{text-decoration:underline}
 <!-- TOPBAR -->
 <div class="topbar">
   <div class="social-icons">
-    <a href="mailto:eminyusufaydin@gmail.com" class="ic-mail" title="Email"><i class="fas fa-envelope"></i></a>
-    <a href="https://scholar.google.com/citations?user=3kCPuu8AAAAJ&hl=tr&oi=ao" target="_blank" class="ic-scholar" title="Google Scholar"><i class="fas fa-graduation-cap"></i></a>
-    <a href="https://github.com/eminyusuff" target="_blank" class="ic-github" title="GitHub"><i class="fab fa-github"></i></a>
-    <a href="https://linkedin.com/in/eminyusufaydin" target="_blank" class="ic-li" title="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+    <a href="mailto:eminyusufaydin@gmail.com" class="ic-mail" title="Email" aria-label="Email"><i class="fas fa-envelope" aria-hidden="true"></i></a>
+    <a href="https://scholar.google.com/citations?user=3kCPuu8AAAAJ&hl=en" target="_blank" rel="noopener" class="ic-scholar" title="Google Scholar" aria-label="Google Scholar"><i class="fas fa-graduation-cap" aria-hidden="true"></i></a>
+    <a href="https://github.com/eminyusuff" target="_blank" rel="noopener" class="ic-github" title="GitHub" aria-label="GitHub"><i class="fab fa-github" aria-hidden="true"></i></a>
+    <a href="https://www.linkedin.com/in/eminyusufaydin" target="_blank" rel="noopener" class="ic-li" title="LinkedIn" aria-label="LinkedIn"><i class="fab fa-linkedin-in" aria-hidden="true"></i></a>
   </div>
   <div class="topbar-right">
     <ul class="topnav">
       <li><a href="#about" class="active">About</a></li>
-      <li><a href="Emin_Yusuf_AYDIN_CV.pdf" target="_blank">CV</a></li>
+      <li><a href="#news">News</a></li>
       <li><a href="#publications">Publications</a></li>
+      <li><a href="Emin_Yusuf_AYDIN_CV.pdf" target="_blank">CV</a></li>
     </ul>
-    <button class="theme-toggle" id="themeToggle" title="Toggle dark/light mode">
+    <button class="theme-toggle" id="themeToggle" title="Toggle dark/light mode" aria-label="Toggle dark/light mode">
       <i class="fas fa-moon" id="themeIcon"></i>
     </button>
   </div>
@@ -295,6 +353,12 @@ footer a:hover{text-decoration:underline}
           <i class="fas fa-envelope"></i>
           <a href="mailto:eminyusufaydin@gmail.com">eminyusufaydin@gmail.com</a>
         </div>
+      </div>
+      <div class="hero-links social-icons">
+        <a href="https://scholar.google.com/citations?user=3kCPuu8AAAAJ&hl=en" target="_blank" rel="noopener" class="ic-scholar" aria-label="Google Scholar"><i class="fas fa-graduation-cap" aria-hidden="true"></i></a>
+        <a href="https://github.com/eminyusuff" target="_blank" rel="noopener" class="ic-github" aria-label="GitHub"><i class="fab fa-github" aria-hidden="true"></i></a>
+        <a href="https://www.linkedin.com/in/eminyusufaydin" target="_blank" rel="noopener" class="ic-li" aria-label="LinkedIn"><i class="fab fa-linkedin-in" aria-hidden="true"></i></a>
+        <a href="Emin_Yusuf_AYDIN_CV.pdf" target="_blank" class="ic-mail" aria-label="CV (PDF)"><i class="fas fa-file-pdf" aria-hidden="true"></i></a>
       </div>
     </div>
     <div class="hero-photo">
@@ -400,7 +464,7 @@ footer a:hover{text-decoration:underline}
         </svg>
       </div>
       <div class="pub-body">
-        <p class="pub-ptitle"><a href="https://doi.org/10.1242/jeb.251478">Flow impairs multisensory tracking and increases active sensing in weakly electric fish</a></p>
+        <p class="pub-ptitle"><a href="https://doi.org/10.1242/jeb.251478" target="_blank">Flow impairs multisensory tracking and increases active sensing in weakly electric fish</a></p>
         <p class="pub-authors"><strong>Ayd&#305;n, E. Y.</strong>, Unlutabak, B. &amp; Uyanik, I.</p>
         <p class="pub-venue">Journal of Experimental Biology, 2025</p>
         <!--
@@ -436,7 +500,7 @@ footer a:hover{text-decoration:underline}
         </svg>
       </div>
       <div class="pub-body">
-        <p class="pub-ptitle"><a href="https://doi.org/10.1088/1748-3190/ad9534">Predictive Uncertainty in State-Estimation Drives Active Sensing in Weakly Electric Fish</a></p>
+        <p class="pub-ptitle"><a href="https://doi.org/10.1088/1748-3190/ad9534" target="_blank">Predictive Uncertainty in State-Estimation Drives Active Sensing in Weakly Electric Fish</a></p>
         <p class="pub-authors">Karagoz, O. K., Kilic, A., <strong>Ayd&#305;n, E. Y.</strong>, Ankarali, M. M., &amp; Uyanik, I.</p>
         <p class="pub-venue">Bioinspiration &amp; Biomimetics, 20, 016018, 2025</p>
         <!--
@@ -470,7 +534,7 @@ footer a:hover{text-decoration:underline}
         </svg>
       </div>
       <div class="pub-body">
-        <p class="pub-ptitle"><a href="https://doi.org/10.2174/1574888X18666230221141743">The co-use of stromal vascular fraction and bone marrow concentrate for tendon healing</a></p>
+        <p class="pub-ptitle"><a href="https://doi.org/10.2174/1574888X18666230221141743" target="_blank">The co-use of stromal vascular fraction and bone marrow concentrate for tendon healing</a></p>
         <p class="pub-authors"><strong>Ayd&#305;n, E. Y.</strong>, A&#351;&#305;k, M., Ayd&#305;n, H. M., &Ccedil;ay, N., G&uuml;m&uuml;&#351;kaya, B., et al.</p>
         <p class="pub-venue">Current Stem Cell Research &amp; Therapy, 18(8), 1150&ndash;1159, 2023</p>
         <!--
@@ -498,7 +562,7 @@ footer a:hover{text-decoration:underline}
         </svg>
       </div>
       <div class="pub-body">
-        <p class="pub-ptitle"><a href="https://doi.org/10.1016/j.tice.2021.101693">Fabrication of a multi-layered decellularized amniotic membranes as tissue engineering constructs</a></p>
+        <p class="pub-ptitle"><a href="https://doi.org/10.1016/j.tice.2021.101693" target="_blank">Fabrication of a multi-layered decellularized amniotic membranes as tissue engineering constructs</a></p>
         <p class="pub-authors">Y&uuml;ksel, S., A&#351;&#305;k, M. D., Aydin, H. M., T&ouml;n&uuml;k, E., <strong>Ayd&#305;n, E. Y.</strong>, &amp; Bozkurt, M.</p>
         <p class="pub-venue">Tissue and Cell, 74, 101693, 2022</p>
         <!--
@@ -705,8 +769,9 @@ footer a:hover{text-decoration:underline}
 </div>
 
 <footer>
-  &copy; 2026 Emin Yusuf AYDIN &nbsp;&middot;&nbsp; Hacettepe University &nbsp;&middot;&nbsp;
-  Hosted by <a href="https://pages.github.com" target="_blank" style="color:#aaa;text-decoration:underline">GitHub Pages</a>
+  &copy; <span id="footer-year">2026</span> Emin Yusuf AYDIN &nbsp;&middot;&nbsp;
+  Last updated: <span id="last-updated">2026-11-21</span> &nbsp;&middot;&nbsp;
+  Hosted by <a href="https://pages.github.com" target="_blank" rel="noopener" style="text-decoration:underline">GitHub Pages</a>
 </footer>
 
 <script>
@@ -724,27 +789,22 @@ const themeToggle = document.getElementById('themeToggle');
 const themeIcon = document.getElementById('themeIcon');
 const htmlEl = document.documentElement;
 
-// Sayfa yüklendiğinde hafızadaki temayı kontrol et
-if (localStorage.getItem('theme') === 'dark') {
-  htmlEl.classList.add('dark');
-  themeIcon.classList.remove('fa-moon');
-  themeIcon.classList.add('fa-sun');
+// Tema <head> içinde ilk boyamadan önce uygulanıyor; burada sadece ikonu eşitle
+function syncThemeIcon() {
+  const dark = htmlEl.classList.contains('dark');
+  themeIcon.classList.toggle('fa-sun', dark);
+  themeIcon.classList.toggle('fa-moon', !dark);
 }
+syncThemeIcon();
 
 // Butona tıklandığında temayı değiştir ve kaydet
 themeToggle.addEventListener('click', () => {
   htmlEl.classList.toggle('dark');
-  
-  if (htmlEl.classList.contains('dark')) {
-    localStorage.setItem('theme', 'dark');
-    themeIcon.classList.remove('fa-moon');
-    themeIcon.classList.add('fa-sun');
-  } else {
-    localStorage.setItem('theme', 'light');
-    themeIcon.classList.remove('fa-sun');
-    themeIcon.classList.add('fa-moon');
-  }
+  try { localStorage.setItem('theme', htmlEl.classList.contains('dark') ? 'dark' : 'light'); } catch (e) {}
+  syncThemeIcon();
 });
+
+document.getElementById('footer-year').textContent = new Date().getFullYear();
 </script>
 <!-- PUBLICATION CARD LINKS START -->
 <script>
