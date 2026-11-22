@@ -1,0 +1,90 @@
+name: Academic Highlight
+description: Add a conference, award, grant, talk, publication or milestone to the website (published automatically).
+labels: ["academic-highlight"]
+title: "[Highlight] "
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Fill in the form and submit. A workflow adds the item to `data/highlights.json`,
+        rebuilds the News section, comments here and closes the issue (usually within 1–2 minutes).
+        Only issues opened by the repository owner are published.
+  - type: dropdown
+    id: type
+    attributes:
+      label: Type
+      options:
+        - conference
+        - workshop
+        - talk
+        - award
+        - grant
+        - travel_grant
+        - fellowship
+        - publication
+        - training
+        - degree
+        - news
+    validations:
+      required: true
+  - type: input
+    id: date
+    attributes:
+      label: Start date
+      description: YYYY-MM-DD (or YYYY-MM if the day is unknown). Future dates are shown with an "Upcoming" tag.
+      placeholder: "2026-08-28"
+    validations:
+      required: true
+  - type: input
+    id: end_date
+    attributes:
+      label: End date
+      description: Optional, YYYY-MM-DD
+      placeholder: "2026-08-30"
+  - type: input
+    id: title
+    attributes:
+      label: Title
+      placeholder: "IFAC World Congress 2026"
+    validations:
+      required: true
+  - type: input
+    id: location
+    attributes:
+      label: Location
+      placeholder: "Busan, South Korea"
+  - type: textarea
+    id: description
+    attributes:
+      label: Description
+      description: One short public sentence. Write it in the tense that will still be true later (e.g. "Presented a poster", not "will present").
+      placeholder: "Presented our work on ..."
+    validations:
+      required: true
+  - type: input
+    id: presentation_type
+    attributes:
+      label: Presentation type
+      description: Optional – e.g. Poster, Oral presentation, Lightning talk & poster, Invited talk
+  - type: input
+    id: work_title
+    attributes:
+      label: Presented work title
+      description: Optional – title of the poster / talk / paper
+  - type: input
+    id: url
+    attributes:
+      label: Public URL
+      description: Conference, award, DOI or announcement link (optional)
+  - type: textarea
+    id: photo
+    attributes:
+      label: Photo
+      description: Optional – drag and drop ONE photo here. It is copied into assets/events/ and shown under the news item.
+  - type: checkboxes
+    id: approval
+    attributes:
+      label: Publication approval
+      options:
+        - label: I confirm this information may be published on my academic website.
+          required: true

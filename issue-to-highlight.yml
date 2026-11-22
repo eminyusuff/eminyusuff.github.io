@@ -1,0 +1,83 @@
+name: Publish highlight from issue
+
+# Open an issue with the "Academic Highlight" form (works from the GitHub mobile app too)
+# -> the item is added to data/highlights.json, the News section is rebuilt,
+#    the bot comments on the issue and closes it.
+
+on:
+  issues:
+    types: [opened, edited, reopened]
+
+permissions:
+  contents: write
+  issues: write
+
+concurrency:
+  group: academic-site-sync
+  cancel-in-progress: false
+
+jobs:
+  publish:
+    # Only the site owner can publish, and only highlight issues are processed.
+    if: >
+      github.event.issue.user.login == github.repository_owner &&
+      github.event.issue.state == 'open' &&
+      startsWith(github.event.issue.title, '[Highlight]')
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Add highlight to data/highlights.json
+        id: parse
+        env:
+          ISSUE_BODY: ${{ github.event.issue.body }}
+          ISSUE_NUMBER: ${{ github.event.issue.number }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: python scripts/issue_to_highlight.py
+
+      # Pushes made with GITHUB_TOKEN do not start other workflows,
+      # so the site is rebuilt right here.
+      - name: Rebuild site sections
+        run: |
+          python scripts/sync_highlights.py
+          python scripts/sync_publications.py
+
+      - name: Commit and push
+        env:
+          ISSUE_NUMBER: ${{ github.event.issue.number }}
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add data/highlights.json data/highlights.generated.json data/verified_publications.json index.html assets/events 2>/dev/null || true
+          if git diff --cached --quiet; then
+            echo "Nothing changed"
+          else
+            git commit -m "content: highlight from issue #${ISSUE_NUMBER}"
+            git pull --rebase origin main
+            git push
+          fi
+
+      - name: Comment and close issue
+        if: success()
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          ISSUE_NUMBER: ${{ github.event.issue.number }}
+        run: |
+          gh issue comment "$ISSUE_NUMBER" --repo "$GITHUB_REPOSITORY" --body-file issue_result.md
+          gh issue close "$ISSUE_NUMBER" --repo "$GITHUB_REPOSITORY"
+
+      - name: Report validation problem
+        if: failure() && steps.parse.outcome == 'failure'
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          ISSUE_NUMBER: ${{ github.event.issue.number }}
+        run: |
+          if [ -f issue_result.md ]; then
+            gh issue comment "$ISSUE_NUMBER" --repo "$GITHUB_REPOSITORY" --body-file issue_result.md
+          fi
