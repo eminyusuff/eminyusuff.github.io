@@ -32,7 +32,8 @@
   "sameAs": [
     "https://scholar.google.com/citations?user=3kCPuu8AAAAJ",
     "https://github.com/eminyusuff",
-    "https://www.linkedin.com/in/eminyusufaydin"
+    "https://www.linkedin.com/in/eminyusufaydin",
+    "https://orcid.org/0000-0001-5247-2462"
   ]
 }
 </script>
@@ -271,6 +272,29 @@ section:last-of-type{border-bottom:none}
 }
 .pub-link-btn:hover{border-color:var(--accent);color:var(--accent);background:var(--accent-h)}
 
+/* RESEARCH */
+.res-intro{font-size:.98rem;color:var(--text2);margin-bottom:1.4rem}
+.res-group{font-size:.72rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);border-bottom:1px solid var(--border);padding-bottom:.4rem;margin:1.8rem 0 .4rem}
+.res-group:first-of-type{margin-top:0}
+.proj{padding:1rem 0;border-bottom:1px solid var(--border2)}
+.proj:last-child{border-bottom:none}
+.proj-title{font-size:.98rem;font-weight:600;color:var(--text);line-height:1.45}
+.proj-meta{font-size:.82rem;color:var(--muted);margin:.15rem 0 .35rem}
+.proj-meta .pill{display:inline-block;font-size:.66rem;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:#fff;background:var(--accent);border-radius:4px;padding:0 .4rem;margin-right:.4rem;vertical-align:1px}
+.proj-desc{font-size:.92rem;color:var(--text2);line-height:1.7}
+.proj-rel{font-size:.84rem;color:var(--text3);margin-top:.35rem}
+.proj-rel a{color:var(--accent)}
+.proj-rel a:hover{text-decoration:underline}
+
+/* EDUCATION */
+.edu-row{display:grid;grid-template-columns:110px 1fr;gap:1.2rem;padding:.9rem 0;border-bottom:1px solid var(--border2)}
+.edu-row:last-child{border-bottom:none}
+.edu-years{font-size:.85rem;font-weight:600;color:var(--muted);padding-top:2px}
+.edu-degree{font-size:.98rem;font-weight:600;color:var(--text)}
+.edu-school{font-size:.9rem;color:var(--text2)}
+.edu-detail{font-size:.84rem;color:var(--text3);margin-top:.2rem}
+.ic-orcid{background:#A6CE39;color:#fff}
+
 /* FOOTER */
 footer{
   text-align:center;padding:1.8rem 48px;
@@ -307,6 +331,8 @@ footer a:hover{text-decoration:underline}
   .news-row{flex-direction:column;gap:.35rem}
   .pub-card{grid-template-columns:1fr}
   .pub-thumb{width:100%;height:140px}
+  .edu-row{grid-template-columns:1fr;gap:.2rem}
+  .topnav li.nav-optional{display:none}
 }
 @media(prefers-reduced-motion:reduce){
   html{scroll-behavior:auto}
@@ -323,10 +349,12 @@ footer a:hover{text-decoration:underline}
     <a href="https://scholar.google.com/citations?user=3kCPuu8AAAAJ&hl=en" target="_blank" rel="noopener" class="ic-scholar" title="Google Scholar" aria-label="Google Scholar"><i class="fas fa-graduation-cap" aria-hidden="true"></i></a>
     <a href="https://github.com/eminyusuff" target="_blank" rel="noopener" class="ic-github" title="GitHub" aria-label="GitHub"><i class="fab fa-github" aria-hidden="true"></i></a>
     <a href="https://www.linkedin.com/in/eminyusufaydin" target="_blank" rel="noopener" class="ic-li" title="LinkedIn" aria-label="LinkedIn"><i class="fab fa-linkedin-in" aria-hidden="true"></i></a>
+    <a href="https://orcid.org/0000-0001-5247-2462" target="_blank" rel="noopener" class="ic-orcid" title="ORCID" aria-label="ORCID"><i class="fab fa-orcid" aria-hidden="true"></i></a>
   </div>
   <div class="topbar-right">
     <ul class="topnav">
-      <li><a href="#about" class="active">About</a></li>
+      <li class="nav-optional"><a href="#about" class="active">About</a></li>
+      <li><a href="#research">Research</a></li>
       <li><a href="#news">News</a></li>
       <li><a href="#publications">Publications</a></li>
       <li><a href="Emin_Yusuf_AYDIN_CV.pdf" target="_blank">CV</a></li>
@@ -358,6 +386,7 @@ footer a:hover{text-decoration:underline}
         <a href="https://scholar.google.com/citations?user=3kCPuu8AAAAJ&hl=en" target="_blank" rel="noopener" class="ic-scholar" aria-label="Google Scholar"><i class="fas fa-graduation-cap" aria-hidden="true"></i></a>
         <a href="https://github.com/eminyusuff" target="_blank" rel="noopener" class="ic-github" aria-label="GitHub"><i class="fab fa-github" aria-hidden="true"></i></a>
         <a href="https://www.linkedin.com/in/eminyusufaydin" target="_blank" rel="noopener" class="ic-li" aria-label="LinkedIn"><i class="fab fa-linkedin-in" aria-hidden="true"></i></a>
+        <a href="https://orcid.org/0000-0001-5247-2462" target="_blank" rel="noopener" class="ic-orcid" aria-label="ORCID"><i class="fab fa-orcid" aria-hidden="true"></i></a>
         <a href="Emin_Yusuf_AYDIN_CV.pdf" target="_blank" class="ic-mail" aria-label="CV (PDF)"><i class="fas fa-file-pdf" aria-hidden="true"></i></a>
       </div>
     </div>
@@ -374,6 +403,45 @@ footer a:hover{text-decoration:underline}
       <p>I completed my PhD in Bioengineering at Hacettepe University. My doctoral thesis, titled ‘Modeling the Role of Active Sensing Movements in Weakly Electric Fish During Refuge Tracking Behavior,’ investigated active sensing, multisensory integration, and sensorimotor control in weakly electric fish using closed-loop behavioral experiments, computational modeling, and system identification.</p>
       <p>My current research interests span systems and behavioral neuroscience, electrophysiology, neural sensing, bioinspired robotics, control systems, and the translation of biological sensing principles into engineering applications.</p>
       <p>I currently work as R&amp;D personnel at Tellus Araştırma Geliştirme ve Mühendislik A.Ş. in Ankara, while continuing my research on active sensing, sensorimotor control, and bioinspired sensing systems.</p>
+    </div>
+  </section>
+
+  <!-- RESEARCH (manual section; not touched by the sync scripts) -->
+  <section id="research">
+    <h2 class="sec-title">Research &amp; Projects</h2>
+    <p class="res-intro">How do animals move to sense? I study active sensing and multisensory feedback control in weakly electric fish with closed-loop behavioral experiments, system identification and computational modeling.</p>
+
+    <div class="res-group">As Principal Investigator</div>
+    <div class="proj">
+      <p class="proj-title">Short-Term Adaptive Modulation of Refuge-Tracking Behavior Under Controlled Sensory Perturbations</p>
+      <p class="proj-meta"><span class="pill">PI</span>TÜBİTAK 1002-A Short-Term Support Module · funded 2026</p>
+      <p class="proj-desc">Short-term sensorimotor adaptation in weakly electric fish, studied with software-controlled sensory perturbations during closed-loop refuge tracking.</p>
+    </div>
+
+    <div class="res-group">As Researcher / Project Fellow</div>
+    <div class="proj">
+      <p class="proj-title">System Identification of Multisensory Integration and Dynamic Sensory Weighting</p>
+      <p class="proj-meta">TÜBİTAK 1001 · Project No. 123E155 · Doctoral researcher</p>
+      <p class="proj-desc">Multisensory refuge-tracking experiments under visual, refuge-geometry and water-flow manipulations; synchronized motion tracking, actuator control and data acquisition; frequency-domain system identification and modeling.</p>
+      <p class="proj-rel">Related: <a href="https://doi.org/10.1242/jeb.251478" target="_blank">Flow impairs multisensory tracking… (J. Exp. Biol.)</a> · <a href="https://doi.org/10.48623/aperta.286374" target="_blank">dataset</a></p>
+    </div>
+    <div class="proj">
+      <p class="proj-title">Behavioral Mechanisms of Active Sensing</p>
+      <p class="proj-meta">TÜBİTAK 1001 · Project No. 120E198 · Full-time doctoral project fellow</p>
+      <p class="proj-desc">Built the experimental infrastructure for active-sensing studies: camera-based tracking, embedded controllers, data acquisition and ROS/ROS2 real-time closed-loop control, with machine-learning-assisted landmark detection and adaptive filtering.</p>
+      <p class="proj-rel">Related: <a href="https://doi.org/10.1088/1748-3190/ad9534" target="_blank">Predictive uncertainty… (Bioinspir. Biomim.)</a> · <a href="https://doi.org/10.1109/SIU61531.2024.10601043" target="_blank">Reshaping active sensing… (SIU 2024)</a></p>
+    </div>
+    <div class="proj">
+      <p class="proj-title">Combined and Individual Effects of Stromal Vascular Fraction and Bone Marrow Concentrate on Achilles Tendon Healing</p>
+      <p class="proj-meta">TÜBİTAK · Project No. 119S901 · Graduate project fellow (M.Sc.)</p>
+      <p class="proj-desc">In vivo tendon-injury model, evaluation of regenerative treatments, outcome assessment and statistical analysis.</p>
+      <p class="proj-rel">Related: <a href="https://doi.org/10.2174/1574888X18666230221141743" target="_blank">The co-use of SVF and BMC for tendon healing (Curr. Stem Cell Res. Ther.)</a></p>
+    </div>
+
+    <div class="res-group">Grants &amp; Awards</div>
+    <div class="proj">
+      <p class="proj-desc"><strong>2026</strong> — TÜBİTAK 1002-A Short-Term Support, Principal Investigator</p>
+      <p class="proj-desc"><strong>2026</strong> — IBRO/SfN Travel Grant, Neuroscience 2026 (Washington, D.C.)</p>
     </div>
   </section>
 
@@ -467,12 +535,10 @@ footer a:hover{text-decoration:underline}
         <p class="pub-ptitle"><a href="https://doi.org/10.1242/jeb.251478" target="_blank">Flow impairs multisensory tracking and increases active sensing in weakly electric fish</a></p>
         <p class="pub-authors"><strong>Ayd&#305;n, E. Y.</strong>, Unlutabak, B. &amp; Uyanik, I.</p>
         <p class="pub-venue">Journal of Experimental Biology, 2025</p>
-        <!--
         <div class="pub-links">
-          <a href="#" class="pub-link-btn" target="_blank">PDF</a>
-          <a href="#" class="pub-link-btn" target="_blank">Data</a>
+          <a href="https://doi.org/10.1242/jeb.251478" class="pub-link-btn" target="_blank">DOI</a>
+          <a href="https://doi.org/10.48623/aperta.286374" class="pub-link-btn" target="_blank">Dataset</a>
         </div>
-        -->
       </div>
     </div>
 
@@ -503,12 +569,9 @@ footer a:hover{text-decoration:underline}
         <p class="pub-ptitle"><a href="https://doi.org/10.1088/1748-3190/ad9534" target="_blank">Predictive Uncertainty in State-Estimation Drives Active Sensing in Weakly Electric Fish</a></p>
         <p class="pub-authors">Karagoz, O. K., Kilic, A., <strong>Ayd&#305;n, E. Y.</strong>, Ankarali, M. M., &amp; Uyanik, I.</p>
         <p class="pub-venue">Bioinspiration &amp; Biomimetics, 20, 016018, 2025</p>
-        <!--
         <div class="pub-links">
-          <a href="#" class="pub-link-btn" target="_blank">PDF</a>
-          <a href="#" class="pub-link-btn" target="_blank">Data</a>
+          <a href="https://doi.org/10.1088/1748-3190/ad9534" class="pub-link-btn" target="_blank">DOI</a>
         </div>
-        -->
       </div>
     </div>
 
@@ -537,12 +600,9 @@ footer a:hover{text-decoration:underline}
         <p class="pub-ptitle"><a href="https://doi.org/10.2174/1574888X18666230221141743" target="_blank">The co-use of stromal vascular fraction and bone marrow concentrate for tendon healing</a></p>
         <p class="pub-authors"><strong>Ayd&#305;n, E. Y.</strong>, A&#351;&#305;k, M., Ayd&#305;n, H. M., &Ccedil;ay, N., G&uuml;m&uuml;&#351;kaya, B., et al.</p>
         <p class="pub-venue">Current Stem Cell Research &amp; Therapy, 18(8), 1150&ndash;1159, 2023</p>
-        <!--
         <div class="pub-links">
-          <a href="#" class="pub-link-btn" target="_blank">PDF</a>
-          <a href="#" class="pub-link-btn" target="_blank">Data</a>
+          <a href="https://doi.org/10.2174/1574888X18666230221141743" class="pub-link-btn" target="_blank">DOI</a>
         </div>
-        -->
       </div>
     </div>
 
@@ -565,12 +625,9 @@ footer a:hover{text-decoration:underline}
         <p class="pub-ptitle"><a href="https://doi.org/10.1016/j.tice.2021.101693" target="_blank">Fabrication of a multi-layered decellularized amniotic membranes as tissue engineering constructs</a></p>
         <p class="pub-authors">Y&uuml;ksel, S., A&#351;&#305;k, M. D., Aydin, H. M., T&ouml;n&uuml;k, E., <strong>Ayd&#305;n, E. Y.</strong>, &amp; Bozkurt, M.</p>
         <p class="pub-venue">Tissue and Cell, 74, 101693, 2022</p>
-        <!--
         <div class="pub-links">
-          <a href="#" class="pub-link-btn" target="_blank">PDF</a>
-          <a href="#" class="pub-link-btn" target="_blank">Data</a>
+          <a href="https://doi.org/10.1016/j.tice.2021.101693" class="pub-link-btn" target="_blank">DOI</a>
         </div>
-        -->
       </div>
     </div>
 
@@ -597,12 +654,9 @@ footer a:hover{text-decoration:underline}
         <p class="pub-ptitle"><a href="https://dergipark.org.tr/en/pub/jetr/issue/56637/512289" target="_blank">Bedensel engelli y&uuml;z&uuml;c&uuml;lerde &ccedil;&#305;k&#305;&#351; s&uuml;resinin g&ouml;vde esnekli&#287;i, aerobik endurans ve anaerobik g&uuml;&ccedil; ile ili&#351;kisi</a></p>
         <p class="pub-authors">Seyhan, R. G., Tunay, V. B., G&ouml;ks&uuml;l&uuml;k, D., <strong>Ayd&#305;n, E. Y.</strong>, &amp; Ergun, N.</p>
         <p class="pub-venue">Journal of Exercise Therapy and Rehabilitation, 7(2), 186&ndash;192, 2020</p>
-        <!--
         <div class="pub-links">
-          <a href="#" class="pub-link-btn" target="_blank">PDF</a>
-          <a href="#" class="pub-link-btn" target="_blank">Data</a>
+          <a href="https://dergipark.org.tr/en/pub/jetr/issue/56637/512289" class="pub-link-btn" target="_blank">Publisher</a>
         </div>
-        -->
       </div>
     </div>
 
@@ -630,16 +684,30 @@ footer a:hover{text-decoration:underline}
         <p class="pub-ptitle"><a href="https://www.turkiyeklinikleri.com/article/en-coklu-duyusal-entegrasyon-modeli-olarak-ornek-bir-calisma-zayif-elektrik-baligi-104853.html" target="_blank">A Case Study as a Multisensory Integration Model: Weakly Electric Fish</a></p>
         <p class="pub-authors"><strong>Ayd&#305;n, E. Y.</strong> &amp; Uyanik, I.</p>
         <p class="pub-venue">Use of Zebrafish as a Model Organism (Ed. Din&ccedil;er PR) &middot; T&uuml;rkiye Klinikleri, pp. 104&ndash;9, 2023</p>
-        <!--
         <div class="pub-links">
-          <a href="#" class="pub-link-btn" target="_blank">PDF</a>
-          <a href="#" class="pub-link-btn" target="_blank">Data</a>
+          <a href="https://www.turkiyeklinikleri.com/article/en-coklu-duyusal-entegrasyon-modeli-olarak-ornek-bir-calisma-zayif-elektrik-baligi-104853.html" class="pub-link-btn" target="_blank">Publisher</a>
         </div>
-        -->
       </div>
     </div>
 
     <div class="pub-block-label" style="margin-top:2rem">Conference Papers (Peer-Reviewed)</div>
+
+    <div class="pub-card">
+      <div class="pub-thumb">
+        <svg viewBox="0 0 130 100" xmlns="http://www.w3.org/2000/svg">
+          <rect width="130" height="100" fill="#eef6f1"/>
+          <path d="M8 62 Q20 40 32 62 T56 62 T80 62 T104 62 T122 62" stroke="#9cc9b0" stroke-width="1.4" fill="none"/>
+          <path d="M8 62 Q14 52 20 62 Q26 72 32 62 Q38 50 44 62 Q50 74 56 62 Q62 52 68 62 Q74 72 80 62 Q86 50 92 62 Q98 74 104 62 Q110 52 116 62" stroke="#1f7a4d" stroke-width="1" fill="none" opacity=".75"/>
+          <text x="65" y="28" text-anchor="middle" font-size="13" fill="#1f5c3d" font-family="sans-serif" font-weight="bold">IFAC 2026</text>
+          <text x="65" y="88" text-anchor="middle" font-size="7" fill="#557" font-family="sans-serif">tracking vs. active sensing</text>
+        </svg>
+      </div>
+      <div class="pub-body">
+        <p class="pub-ptitle">Real-Time Decomposition of Active Sensing and Tracking Motions via a Structure-Aware Filtering Framework</p>
+        <p class="pub-authors"><strong>Ayd&#305;n, E. Y.</strong>, Y&#305;lmaz, O., &Ouml;zt&uuml;rk, M., Do&#287;an, H. &amp; Uyan&#305;k, &#304;.</p>
+        <p class="pub-venue">23rd IFAC World Congress (IFAC WC 2026), Busan, South Korea, 2026</p>
+      </div>
+    </div>
 
     <!-- AUTO VERIFIED CONFERENCE PAPERS START -->
     <div class="pub-card auto-pub-card">
@@ -687,12 +755,9 @@ footer a:hover{text-decoration:underline}
         <p class="pub-ptitle"><a href="https://doi.org/10.1109/SIU61531.2024.10601043" target="_blank">Reshaping Active Sensing via Closing a Feedback Loop Around Free Behavior</a></p>
         <p class="pub-authors">Top&ccedil;akar, S., <strong>Ayd&#305;n, E. Y.</strong>, Demirel, A., &amp; Uyan&#305;k, &#304;.</p>
         <p class="pub-venue">32nd IEEE Signal Processing and Communications Applications Conference (SIU), 2024</p>
-        <!--
         <div class="pub-links">
-          <a href="#" class="pub-link-btn" target="_blank">PDF</a>
-          <a href="#" class="pub-link-btn" target="_blank">Data</a>
+          <a href="https://doi.org/10.1109/SIU61531.2024.10601043" class="pub-link-btn" target="_blank">DOI</a>
         </div>
-        -->
       </div>
     </div>
 
@@ -726,12 +791,9 @@ footer a:hover{text-decoration:underline}
         <p class="pub-ptitle"><a href="https://doi.org/10.1109/SIU59756.2023.10223776" target="_blank">Tracking the Nodal Point of Weakly Electric Fish Using Artificial Neural Networks</a></p>
         <p class="pub-authors">&Ccedil;atalba&#351;, B., Elikuru, D., <strong>Ayd&#305;n, E. Y.</strong>, &amp; Uyanik, &#304;.</p>
         <p class="pub-venue">31st IEEE Signal Processing and Communications Applications Conference (SIU), 2023</p>
-        <!--
         <div class="pub-links">
-          <a href="#" class="pub-link-btn" target="_blank">PDF</a>
-          <a href="#" class="pub-link-btn" target="_blank">Data</a>
+          <a href="https://doi.org/10.1109/SIU59756.2023.10223776" class="pub-link-btn" target="_blank">DOI</a>
         </div>
-        -->
       </div>
     </div>
 
@@ -755,15 +817,40 @@ footer a:hover{text-decoration:underline}
         <p class="pub-ptitle"><a href="https://doi.org/10.1109/SIU55565.2022.9864905" target="_blank">System Identification of the Target Tracking Behavior of Zebrafish During Rheotaxis</a></p>
         <p class="pub-authors">Ko&ccedil;, O., Demirel, A., <strong>Ayd&#305;n, E. Y.</strong>, &#304;bi&#351;o&#287;lu, F., et al.</p>
         <p class="pub-venue">30th IEEE Signal Processing and Communications Applications Conference (SIU), 2022</p>
-        <!--
         <div class="pub-links">
-          <a href="#" class="pub-link-btn" target="_blank">PDF</a>
-          <a href="#" class="pub-link-btn" target="_blank">Data</a>
+          <a href="https://doi.org/10.1109/SIU55565.2022.9864905" class="pub-link-btn" target="_blank">DOI</a>
         </div>
-        -->
       </div>
     </div>
 
+  </section>
+
+  <!-- EDUCATION (manual section) -->
+  <section id="education">
+    <h2 class="sec-title">Education</h2>
+    <div class="edu-row">
+      <div class="edu-years">2020 – 2026</div>
+      <div>
+        <p class="edu-degree">Ph.D. in Bioengineering</p>
+        <p class="edu-school">Hacettepe University, Ankara</p>
+        <p class="edu-detail">Advisor: Assoc. Prof. Dr. İsmail Uyanık · Thesis: Modeling the Role of Active Sensing Movements in Weakly Electric Fish During Refuge Tracking Behavior</p>
+      </div>
+    </div>
+    <div class="edu-row">
+      <div class="edu-years">2017 – 2020</div>
+      <div>
+        <p class="edu-degree">M.Sc. in Musculoskeletal System and Regenerative Medicine</p>
+        <p class="edu-school">Ankara Yıldırım Beyazıt University, Ankara</p>
+        <p class="edu-detail">Advisor: Prof. Dr. Murat Bozkurt · Thesis: Comparison of the Combined and Individual Effects of Stromal Vascular Fraction and Bone Marrow Concentrate on the Achilles Tendon</p>
+      </div>
+    </div>
+    <div class="edu-row">
+      <div class="edu-years">2009 – 2013</div>
+      <div>
+        <p class="edu-degree">B.Sc. in Physiotherapy and Rehabilitation</p>
+        <p class="edu-school">Başkent University, Ankara</p>
+      </div>
+    </div>
   </section>
 
 </div>
